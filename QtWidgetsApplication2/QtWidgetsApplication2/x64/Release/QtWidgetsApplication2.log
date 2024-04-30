@@ -1,0 +1,17 @@
+﻿  QtWidgetsApplication2.cpp
+C:\Users\Administrator\source\repos\QtWidgetsApplication2\QtWidgetsApplication2\QtWidgetsApplication2.h(1,1): warning C4828: 文件包含在偏移 0x645 处开始的字符，该字符在当前源字符集中无效(代码页 65001)。
+C:\Users\Administrator\source\repos\QtWidgetsApplication2\QtWidgetsApplication2\QtWidgetsApplication2.h(1,1): warning C4828: 文件包含在偏移 0x647 处开始的字符，该字符在当前源字符集中无效(代码页 65001)。
+C:\Users\Administrator\source\repos\QtWidgetsApplication2\QtWidgetsApplication2\QtWidgetsApplication2.h(1,1): warning C4828: 文件包含在偏移 0x649 处开始的字符，该字符在当前源字符集中无效(代码页 65001)。
+C:\Users\Administrator\source\repos\QtWidgetsApplication2\QtWidgetsApplication2\QtWidgetsApplication2.h(1,1): warning C4828: 文件包含在偏移 0x64b 处开始的字符，该字符在当前源字符集中无效(代码页 65001)。
+C:\Users\Administrator\source\repos\QtWidgetsApplication2\QtWidgetsApplication2\QtWidgetsApplication2.h(1,1): warning C4828: 文件包含在偏移 0x64c 处开始的字符，该字符在当前源字符集中无效(代码页 65001)。
+C:\Users\Administrator\source\repos\QtWidgetsApplication2\QtWidgetsApplication2\QtWidgetsApplication2.h(1,1): warning C4828: 文件包含在偏移 0x64e 处开始的字符，该字符在当前源字符集中无效(代码页 65001)。
+C:\Users\Administrator\source\repos\QtWidgetsApplication2\QtWidgetsApplication2\QtWidgetsApplication2.h(1,1): warning C4828: 文件包含在偏移 0x650 处开始的字符，该字符在当前源字符集中无效(代码页 65001)。
+C:\Users\Administrator\source\repos\QtWidgetsApplication2\QtWidgetsApplication2\QtWidgetsApplication2.h(1,1): warning C4828: 文件包含在偏移 0x677 处开始的字符，该字符在当前源字符集中无效(代码页 65001)。
+C:\Users\Administrator\source\repos\QtWidgetsApplication2\QtWidgetsApplication2\QtWidgetsApplication2.h(1,1): warning C4828: 文件包含在偏移 0x67c 处开始的字符，该字符在当前源字符集中无效(代码页 65001)。
+C:\Users\Administrator\source\repos\QtWidgetsApplication2\QtWidgetsApplication2\QtWidgetsApplication2.h(1,1): warning C4828: 文件包含在偏移 0x67f 处开始的字符，该字符在当前源字符集中无效(代码页 65001)。
+  正在生成代码
+  80 of 560 functions (14.3%) were compiled, the rest were copied from previous compilation.
+    0 functions were new in current compilation
+    29 functions had inline decision re-evaluated but remain unchanged
+  已完成代码的生成
+  QtWidgetsApplication2.vcxproj -> C:\Users\Administrator\source\repos\QtWidgetsApplication2\x64\Release\QtWidgetsApplication2.exe

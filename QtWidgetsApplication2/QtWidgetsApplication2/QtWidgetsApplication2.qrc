@@ -1,0 +1,5 @@
+<RCC>
+    <qresource prefix="/new/images">
+        <file>占位图片.png</file>
+    </qresource>
+</RCC>
