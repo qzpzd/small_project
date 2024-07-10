@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Navigation Website</title>
+    <link rel="stylesheet" href="/static/css/styles.css">
+    <link rel="shortcut icon" type="image/x-icon" href="/static/icons/favicon.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <header>
+        <img src="/static/icons/favicon.png" alt="Logo" id="header-logo">
+        <h1>Navigation Website</h1>
+        <nav>
+            <ul>
+                <li><a href="/">Home</a></li>
+                <li><a href="/about">About</a></li>
+                <li><a href="/contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+    <div class="content-area" id="content-area">
+            
+            <aside id="aside">
+                <h2>Quick Links</h2>
+                <ul id="quick-links">
+                    <!-- 动态填充 -->
+                </ul>
+            </aside>
+            
+            <!-- 第一个容器 -->
+            <div class="container">
+                <div class="header">
+                    <h2>学习网站教程</h2>
+                    <div class="tab-buttons" id="tab-buttons-1">
+                        <!-- 动态生成的按钮 -->
+                    </div>
+                </div>
+                <div class="cards-container" id="cards-container-1">
+                    <!-- 动态生成的卡片 -->
+                </div>
+            </div>
+        
+            <!-- 第二个容器 -->
+            <div class="container">
+                <div class="header">
+                    <h2>AI工具</h2>
+                    <div class="tab-buttons" id="tab-buttons-2">
+                        <!-- 动态生成的按钮 -->
+                    </div>
+                </div>
+                <div class="cards-container" id="cards-container-2">
+                    <!-- 动态生成的卡片 -->
+                </div>
+            </div>
+
+            <!-- 第三个容器 -->
+            <div class="container">
+                <div class="header">
+                    <h2>设计工具</h2>
+                    <div class="tab-buttons" id="tab-buttons-3">
+                        <!-- 动态生成的按钮 -->
+                    </div>
+                </div>
+                <div class="cards-container" id="cards-container-3">
+                    <!-- 动态生成的卡片 -->
+                </div>
+            </div>
+            
+            <!-- 第四个容器 -->
+            <div class="container">
+                <div class="header">
+                    <h2>学习资料</h2>
+                </div>
+                <div class="cards-container" id="cards-container-4">
+                    <!-- 动态生成的卡片 -->
+                </div>
+            </div>
+            <!-- 更多容器... -->
+            
+
+            <div class="right-blank" id="right-blank">
+                <!-- 右侧空白区域 -->
+                
+            </div>
+    </div>
+    </main>
+    <div class="button-column">
+        <div class="button home-button" data-info="首页信息">
+            <i class="fas fa-home"></i>首页
+        </div>
+        <!-- 其他按钮 -->
+        <div class="button" data-info='{"image": "/static/icons/gongzhonghao.jpg", "text": "欢迎关注我的公众号"}'>
+            <i class="fas fa-eye"></i>关注
+        </div>
+        <div class="button" data-info='{"image": "/static/icons/weixin.jpg", "text": "你好，成为我新的朋友吧"}'>
+            <i class="fas fa-user-plus"></i>加好友
+        </div>
+        <!-- 更多按钮可按需添加 -->
+        <div class="button to-top-button" data-info="回到顶部">
+            <i class="fas fa-arrow-up"></i>顶部
+        </div>
+    </div>
+    <footer>
+        <p>&copy; 2023 Navigation Website. All rights reserved.</p>
+    </footer>
+    <script src="/static/js/script.js"></script>
+</body>
+</html>

@@ -1,0 +1,400 @@
+/* 基础重置 */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: rgb(240, 240, 240);
+    margin: 0;
+    min-height: 100px; /* 使body至少有视口的高度 */
+    flex-direction: row;
+    margin-bottom: 40px;
+    position: relative;
+}
+
+/* 头部样式 */
+header {
+    background-color: #333;
+    color: white;
+    padding: 10px 20px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    position:relative;
+    top: 0;
+    height: 50px;
+}
+
+/* 图片样式 */
+#header-logo {
+    width: auto;
+    height: 30px;
+    vertical-align: middle;
+    margin-right: 10px; /* 可选，与标题之间的间距 */
+}
+
+/* 侧边栏样式 */
+aside {
+    background-color: rgb(240, 240, 240);
+    width: 200px;
+    position: fixed; /* 设置为fixed，确保不占用content-area空间 */
+    top: 50px;
+    bottom: 40px;
+    left: 0;
+    padding: 20px;
+    overflow-y: auto;
+    text-align:center;
+}
+
+/* 导航栏样式 */
+nav {
+    margin-left: auto;
+}
+
+nav ul {
+    list-style-type: none;
+    display: flex;
+}
+
+nav ul li {
+    margin-right: 20px;
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: rgb(245, 240, 247);
+}
+
+aside ul {
+    list-style-type: none;
+}
+
+aside ul li {
+    margin-bottom: 10px;
+}
+
+/* 页脚样式 */
+footer {
+    background-color: #333;
+    color: white;
+    padding: 10px 20px;
+    text-align: center;
+    position:fixed;
+    bottom: 0;
+    width: 100%;
+    height: 40px;
+    
+}
+
+
+/* 在你的CSS文件中 */
+.default-text-color {
+    color: #000; /* 设置文本颜色为黑色，可以根据需要替换颜色值 */
+    text-decoration: none; /* 去掉下划线 */
+    
+}
+
+.default-text-color:hover {
+    color: #32a1ce
+}
+.default-text-color.active {
+    color: #1bdd8f !important; /* 当链接被激活（点击时）颜色变为蓝色 */
+    background-color: rgba(0, 0, 255, 0.1); /* 添加淡蓝色背景 */
+    border-bottom: 1px solid blue; /* 添加底部蓝色边框 */
+    box-shadow: 0 0 5px rgba(0, 0, 255, 0.5); /* 添加蓝色阴影 */
+}
+
+
+
+/* 右侧空白区域样式 */
+.right-blank {
+    background-color: rgb(240, 240, 240);
+    width: 200px; /* 设置与aside相同的宽度 */
+    position: fixed; /* 设置为fixed，确保不占用content-area空间 */
+    top: 50px;
+    bottom: 40px;
+    padding: 20px;
+    right: 0;
+    overflow-y: auto;
+}
+
+/* 内容区域样式 */S
+.content-area {
+    flex: 1;
+    margin-top: 50px; /* 跟header的高度保持一致 */
+    margin-left: 200px; 
+    margin-right: 200px;
+    width: calc(100%-400px);
+}
+
+/* 主体容器样式 */
+.container {
+    flex-grow: 1; /* 让container占据content-area的全部剩余空间 */
+    background-color: rgb(255, 255, 255);
+    padding: 10px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    overflow: auto;
+    z-index: 1000;
+}
+
+/* 标题区域样式 */
+.header {
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    margin-bottom: 10px;
+    gap: 10px; 
+}
+
+/* 卡片容器样式 */
+.cards-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: start;
+    gap: 20px;
+    transition: flex-direction 0.3s ease;
+    
+}
+
+/* 卡片样式 */
+.card {
+    /* max-width: 250px;  */
+    /* background-color: rgb(255, 255, 255); */
+    max-height: 80px;
+    padding: 5px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    display: grid;
+    grid-template-columns: 30px 1fr; /* 左侧固定30px图标，右侧自动填充 */
+    grid-template-rows: 40% 60%; /* 图标占据高度的五分之二，剩余空间给文本 */
+    gap: 10px;
+    transition: box-shadow 0.3s;
+    margin-bottom: 10px;
+    flex-grow: 1; /* 让卡片可以伸展 */
+    flex: 1 0 calc(20% - 20px); /* 在大屏幕下卡片占据四分之一宽度 */
+    max-width: calc(20% - 20px);    
+}
+
+.card:hover {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* 图标样式 */
+.card .website-icon {
+    width: 100%; /* 图标宽度与容器相同 */
+    height: 100%; /* 图标高度占据卡片高度的五分之二 */
+    overflow: hidden;
+    margin: 0;
+    grid-row: 1 / 2; /* 图标占据第一行 */
+}
+
+.card .website-icon img {
+    width: 100%; /* 保持图片宽度自动 */
+    height: 100%; /* 图片高度与容器相同，保持原始比例 */
+    object-fit: contain; /* 保持图片原始比例，如果需要的话可以裁剪 */
+}
+
+/* 图标标签样式 */
+.card .website-label {
+    display: -webkit-box; /* 使用WebKit的弹性盒子 */
+    -webkit-line-clamp: 1; /* 控制显示行数 */
+    -webkit-box-orient: vertical; /* 设置垂直方向显示 */
+    margin-left: 5px;
+    margin-top: 5px;
+    text-align: left;
+    grid-column: 2;
+    grid-row: 1 / 3; /* 文本从第二行开始，跨行 */
+    font-size: 1.2em; /* 字体大小增加 */
+    font-weight: bold; /* 字体加粗 */
+}
+
+/* 描述文本样式 */
+.card .description {
+    display: -webkit-box; /* 同上 */
+    -webkit-line-clamp: 2; /* 控制显示行数 */
+    -webkit-box-orient: vertical; /* 设置垂直方向显示 */
+    overflow: hidden; /* 隐藏多余的文本 */
+    text-overflow: ellipsis; /* 显示省略号 */
+    margin-top: 0;
+    font-size: 0.9em;
+    color: #666;
+    text-align: left;
+    grid-column: 2;
+    grid-row: 2; /* 描述文本在第二行 */
+}
+
+/* 媒体查询 */
+@media (max-width: 600px) { /* 当窗口小于1000px时 */
+    .cards-container {
+        flex-direction: row; /* 卡片变为垂直排列 */
+    }
+    .card {
+        /* flex-basis: 100%; 卡片宽度为100%，即独占一行 */
+        flex: 1 0 calc(100% - 20px); /* 在大屏幕下卡片占据四分之一宽度 */
+        max-width: calc(100% - 20px);
+    }
+    .card .description {
+        -webkit-line-clamp: 2; /* 显示一行 */
+    }
+}
+
+@media (min-width: 601px) and (max-width: 1000px) { /* 当窗口介于1001px和1200px之间 */
+    .cards-container {
+        flex-direction: row; /* 卡片水平排列 */
+    }
+    .card {
+        /* flex-basis: calc(50% - 20px); 卡片宽度为总宽度的1/2减去间距 */
+        flex: 1 0 calc(50% - 20px); /* 在大屏幕下卡片占据四分之一宽度 */
+        max-width: calc(50% - 20px);
+    }
+    .card .description {
+        -webkit-line-clamp: 2; /* 显示两行 */
+    }
+}
+
+@media (min-width: 1001px) and (max-width: 1200px) { /* 当窗口大于1200px时 */
+    .cards-container {
+        flex-direction: row; /* 卡片水平排列 */
+    }
+    .card {
+        /* flex-basis: calc(20% - 20px); 卡片宽度为总宽度的1/3减去间距 */
+        flex: 1 0 calc(33.33% - 20px); /* 在大屏幕下卡片占据四分之一宽度 */
+        max-width: calc(33.33% - 20px);
+    }
+    .card .description {
+        -webkit-line-clamp: 2; /* 显示两行 */
+    }
+}
+
+@media (min-width: 1201px) and (max-width: 1400px) { /* 当窗口大于1200px时 */
+    .cards-container {
+        flex-direction: row; /* 卡片水平排列 */
+    }
+    .card {
+        /* flex-basis: calc(20% - 20px); 卡片宽度为总宽度的1/3减去间距 */
+        flex: 1 0 calc(25% - 20px); /* 在大屏幕下卡片占据四分之一宽度 */
+        max-width: calc(25% - 20px);
+    }
+    .card .description {
+        -webkit-line-clamp: 2; /* 显示两行 */
+    }
+}
+
+@media (min-width: 1401px) { /* 当窗口大于1200px时 */
+    .cards-container {
+        flex-direction: row; /* 卡片水平排列 */
+    }
+    .card {
+        /* flex-basis: calc(20% - 20px); 卡片宽度为总宽度的1/3减去间距 */
+        flex: 1 0 calc(20% - 20px); /* 在大屏幕下卡片占据四分之一宽度 */
+        max-width: calc(20% - 20px);
+    }
+    .card .description {
+        -webkit-line-clamp: 2; /* 显示两行 */
+    }
+}
+
+/* @media (max-width: 900px) {
+    aside,
+    .right-blank {
+        display: none;
+    }
+
+    .content-area {
+        width: 100%;
+        margin-left: 0;
+        margin-right: 0;
+    }
+} */
+
+/* 按钮区域样式 */
+.tab-buttons {
+    display: flex;
+    align-items: center;
+}
+
+/* 按钮样式 */
+.tab-buttons button {
+    padding: 5px 10px;
+    border: 2px solid #d9eee8;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    margin-left: 0.5em;
+}
+
+.tab-buttons button:focus {
+    outline: thick double #32a1ce;
+    background-color: #a197e6;
+}
+
+.button-column {
+    position: absolute;
+    top: 50%; /* 垂直居中 */
+    right: 20px; /* 距离右侧边缘的距离 */
+    transform: translateY(-50%); /* 确保绝对居中 */
+    display: flex;
+    flex-direction: column;
+}
+
+.button {
+    display: flex;
+    align-items: center;
+    gap: 5px; /* 图标与文本间距 */
+    padding: 10px;
+    background-color: rgba(255, 255, 255, 0.8);
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.button:hover {
+    background-color: rgba(255, 255, 255, 1);
+}
+
+.button i {
+    font-size: 10px;
+}
+
+/* 显示信息矩形框 */
+.button:hover .info-box {
+    display: block;
+}
+
+.info-box {
+    position: fixed;
+    right: calc(100% + 10px); 
+    top: 50%; /* 垂直居中显示 */
+    transform: translateY(-50%); /* 垂直居中修正 */
+    z-index: 20002; /* 确保信息框在其他元素之上 */
+    background-color: white;
+    border: 1px solid #ccc;
+    padding: 10px;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+    width: 200px; /* 设置一个固定宽度，以确保内容充分显示 */
+    overflow-y: auto; /* 如果内容超出，自动添加滚动条 */
+}
+
+.info-box .info-content {
+    display: grid; /* 使用Grid布局 */
+    grid-template-columns: 60px 1fr; /* 定义两列，第一列固定宽度60px，第二列自适应剩余空间 */
+    grid-gap: 10px; /* 列之间的间距 */
+    align-items: start; /* 对齐项目到网格单元格的起始位置 */
+}
+
+.info-box img {
+    max-width: 100%; /* 确保图片在列内自适应 */
+    height: auto;
+    grid-column: 1 / 2; /* 图片占据第一列 */
+}
+
+.info-box .info-text {
+    grid-column: 2 / 3; /* 文本信息占据第二列 */
+}
