@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Markdown Editor</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: space-between;
+        }
+        .editor-container {
+            display: flex;
+            flex-direction: row;
+            margin: 1rem;
+            gap: 1rem;
+        }
+        .editor {
+            flex: 1;
+            padding: 1rem;
+            border: 1px solid #ccc;
+        }
+        .preview {
+            flex: 1;
+            padding: 1rem;
+            border: 1px solid #ccc;
+        }
+        textarea {
+            width: 100%;
+            height: 100%;
+        }
+    </style>
+</head>
+<body>
+    <div class="editor-container">
+        <div class="editor">
+            <textarea id="markdown-input"></textarea>
+        </div>
+        <div class="preview" id="markdown-preview"></div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <script>
+        const markdownInput = document.getElementById('markdown-input');
+        const markdownPreview = document.getElementById('markdown-preview');
+
+        // 实时更新预览
+        markdownInput.addEventListener('input', () => {
+            const markdown = markdownInput.value;
+            const html = marked(markdown);
+            markdownPreview.innerHTML = html;
+        });
+
+        // 保存文件
+        async function saveFile() {
+            const content = markdownInput.value;
+            const filename = prompt("Enter filename to save:");
+            if (filename) {
+                const response = await fetch('/savefile/', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ content, filename })
+                });
+                if (response.ok) {
+                    alert("File saved successfully");
+                } else {
+                    alert("Failed to save file");
+                }
+            }
+        }
+
+        // 加载文件
+        async function loadFile(event) {
+            const file = event.target.files[0];
+            const formData = new FormData();
+            formData.append('file', file);
+
+            const response = await fetch('/uploadfile/', {
+                method: 'POST',
+                body: formData
+            });
+
+            if (response.ok) {
+                const filename = response.json().then(data => data.filename);
+                const contentResponse = await fetch(`/loadfile/${filename}`);
+                const contentData = await contentResponse.json();
+                markdownInput.value = contentData.content;
+                const html = marked(contentData.content);
+                markdownPreview.innerHTML = html;
+            } else {
+                alert("Failed to load file");
+            }
+        }
+
+        // 拖拽文件加载
+        document.body.addEventListener('dragover', function(e) {
+            e.preventDefault();
+        });
+
+        document.body.addEventListener('drop', function(e) {
+            e.preventDefault();
+            loadFile(e);
+        });
+
+        // 打开文件选择器
+        function openFileDialog() {
+            document.getElementById('file-input').click();
+        }
+
+        // 绑定事件
+        document.getElementById('file-input').addEventListener('change', loadFile);
+        document.getElementById('save-button').addEventListener('click', saveFile);
+    </script>
+
+    <!-- 隐藏的文件输入框 -->
+    <input type="file" id="file-input" style="display:none;" />
+    <!-- 保存按钮 -->
+    <button id="save-button">Save File</button>
+</body>
+</html>

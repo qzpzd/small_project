@@ -1,0 +1,55 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+}
+
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: white;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#uploadForm {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+}
+
+#uploadForm label {
+    width: 100%; /* 让label占据全宽 */
+    text-align: start; /* 文本居中 */
+}
+
+#uploadForm input[type="file"] {
+    width: 100%; /* 输入框占据全宽 */
+}
+
+#uploadForm button {
+    width: 100%; /* 按钮占据全宽 */
+    margin-top: 20px; /* 按钮与输入框之间留空隙 */
+    
+}
+
+#outputContainer {
+    text-align:center;
+    margin-top: 20px;
+    height: 400px;
+    /* background-color:darkgrey; */
+    width: 700px;
+}
+
+#outputImage {
+    max-width: 100%;
+    height: auto;
+    background-size: cover; /* 背景图填充整个容器 */
+    background-position: center; /* 背景图居中 */
+}
+
+
+
