@@ -1,0 +1,60 @@
+# 顶层参数
+db_url: "sqlite:///production.db"
+kafka_bootstrap_servers: "kafka1:9092,kafka2:9092"
+kafka_topic: "optical_processing"
+
+
+input: C:/Users/EDY/Desktop/测试原始数据/测试原始数据/SIL085-SNZ4816-全测-6寸-19#2抽一/原始xyz文件
+output: C:/Users/EDY/Desktop/测试原始数据
+file_type: 'xyz'
+marker_file: "/config/markers.csv"
+spot_test_file: "/config/spot_tests.csv"
+
+
+# 选择参数 (0-不选择 1-选择)
+ifselectx1: 1
+ifselectx2: 1 
+ifselecty1: 1
+ifselecty2: 0
+
+# 自动模式设置 (0-手动 1-自动)
+isauto: 1
+
+# 曲率半径相关参数
+roc1: 800      # 起始曲率半径
+roc2: 900      # 结束曲率半径
+rocstep: 1     # 曲率半径搜索步长
+rocoffset: 100 # 曲率半径偏移量
+
+# 二次曲线常数设置
+conic1: -3.5   # 起始二次曲线常数
+conic2: -1.9   # 结束二次曲线常数
+step2: 0.1     # 二次曲线常数搜索步长
+
+# 尺寸参数 (单位：mm)
+d_x1: 480.0
+d_x2: 435
+d_y1: 480.0
+d_y2: null     # Y2方向不使用设为null
+
+# 拟合参数
+levelpercent: 0.1  # 水平百分比
+step: 1            # 主搜索步长
+
+# 高次项系数配置改为字典形式
+A4: 1.2e-5
+A6: 3.4e-7
+A8: 5.6e-9
+
+
+# 可选功能配置
+enable_debug_log: false
+data_validation: true
+cache_size: 1000
+logging_level: INFO  # DEBUG/INFO/WARNING/ERROR
+log_max_size: 10485760  # 10MB
+log_backup_count: 5
+
+
+
+

@@ -1,0 +1,54 @@
+{
+    "filePath": "D:/project/fulltest-yield-platform-algo/Fitting/test/input_data/xyz_data/000001-1-76.xyz",
+    "fileType": "xyz",
+    "productId":"SIL085",
+    "waferId": "SNZ4816",
+    "saveDir": "D:/project/fulltest-yield-platform-algo/Fitting/test/out_data/xyz",
+    "fitting": 1,
+    "lineFitting": 1,
+    "lineFittingInfo":{
+        "selectX": 1,
+        "xData":[
+            {
+                "name":"X1",
+                "value":480
+            },
+            {
+                "name":"X2",
+                "value":null
+            }
+        ],
+        "selectY": 0,
+        "Ydata":[
+            {
+                "name":"Y1",
+                "value":null
+            }
+        ],
+        "rocInfo":{
+            "roc_start": 1191,  
+            "roc_end": 1390,
+            "roc_step": 1
+        },
+        "conicInfo":{
+            "conic_start": -3.5,
+            "conic_step": 1,
+            "conic_end": -1.9
+        },
+        "fParams":{
+            "A4": 0,
+            "A6": 0,
+            "A8": 0,
+            "A10": 0,
+            "A12": 0,
+            "A14": 0,
+            "A16": 0
+        },
+        "rotate_percent": "0.30",
+        "selectPv": true,
+        "levelPercent": 0.1,
+    
+    "isauto": 0
+    
+    }
+}
