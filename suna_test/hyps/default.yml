@@ -1,0 +1,15 @@
+# Kafka服务器信息
+kafka:
+  bootstrap_servers: "10.10.104.51:9092"   # ip
+  # bootstrap_servers: "172.21.10.11:9092"
+  # bootstrap_servers: "172.21.10.21:9092","172.21.10.22:9092","172.21.10.23:9092"
+  group_id: "my-group25"  
+
+# 保存路径
+filepath: "D:/project/fulltest-yield-platform-algo/Fitting/test/out_data/xyz"
+
+# 算法
+algorithm:
+  is_use_parallel: True
+  max_parallel_num: 2
+

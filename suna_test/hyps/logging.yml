@@ -1,0 +1,153 @@
+version: 1
+formatters:
+  brief:
+    format: "{asctime} {name} {levelname}: {message}"
+    style: "{"
+  standard:
+    format: "{asctime}.{msecs:03.0f} | {name:>22}:{lineno:<5d} | {levelname}: {message}"
+    datefmt: "%Y-%m-%d %H:%M:%S"
+    style: "{"
+  precise:
+    format: "{asctime}.{msecs:03.0f} | {processName}:{process:d} {threadName}:{thread} | {name:>22}@{funcName}:{lineno:<5d} | {levelname}: {message}"
+    datefmt: '%Y-%m-%d %H:%M:%S'
+    style: "{"
+  standard_ex:
+    format: "{asctime}.{msecs:03.0f} | {module:>22}:{lineno:<5d} | {levelname}: {message}"
+    datefmt: "%Y-%m-%d %H:%M:%S"
+    style: "{"
+  precise_ex:
+    format: "{asctime}.{msecs:03.0f} | {processName}:{process:d} {threadName}:{thread} | {module:>22}@{funcName}:{lineno::<5d} | {levelname}: {message}"
+    datefmt: "%Y-%m-%d %H:%M:%S"
+    style: "{"
+filters:
+  only_warning:
+    (): utils.log.LevelFilter
+    levelno: 30
+handlers:
+  none:
+    class: logging.NullHandler
+    level: DEBUG
+  stderr:
+    class: logging.StreamHandler
+    level: DEBUG
+    formatter: standard
+    stream: ext://sys.stderr
+  console:
+    class: logging.StreamHandler
+    level: DEBUG
+    formatter: standard
+    stream: ext://sys.stderr
+  watched_run:
+    class: logging.handlers.WatchedFileHandler  # Only linux, logrotate or newsyslog perform log file rotation.
+    level: DEBUG
+    formatter: standard
+    filename: logs/run/%Y-%m-%d/run.log
+    delay: False
+    mode: a
+    encoding: utf-8
+  watched_warning:
+    class: logging.handlers.WatchedFileHandler  # Only linux, logrotate or newsyslog perform log file rotation.
+    level: WARNING
+    filters: [only_warning]
+    formatter: standard
+    filename: logs/warning/%Y-%m-%d/warning.log
+    delay: False
+    mode: a
+    encoding: utf-8
+  watched_error:
+    class: logging.handlers.WatchedFileHandler  # Only linux, logrotate or newsyslog perform log file rotation.
+    level: ERROR
+    formatter: standard
+    filename: logs/error/%Y-%m-%d/error.log
+    delay: False
+    mode: a
+    encoding: utf-8
+  # concurrent_timed_rotating_run:
+  #   class: concurrent_log_handler.ConcurrentTimedRotatingFileHandler
+  #   level: DEBUG
+  #   formatter: standard
+  #   when: midnight
+  #   interval: 1
+  #   maxBytes: 104857600  # !!python/object/apply:eval [ 100 * 1024 * 1024 ]
+  #   backupCount: 30
+  #   delay: False
+  #   filename: logs/run.log
+  #   encoding: utf-8
+  # concurrent_timed_rotating_warning:
+  #   class: concurrent_log_handler.ConcurrentTimedRotatingFileHandler
+  #   level: WARNING
+  #   filters: [only_warning]
+  #   formatter: standard
+  #   when: midnight
+  #   interval: 1
+  #   maxBytes: 104857600  # !!python/object/apply:eval [ 100 * 1024 * 1024 ]
+  #   backupCount: 30
+  #   delay: False
+  #   filename: logs/warning.log
+  #   encoding: utf-8
+  # concurrent_timed_rotating_error:
+  #   class: concurrent_log_handler.ConcurrentTimedRotatingFileHandler
+  #   level: ERROR
+  #   formatter: standard
+  #   when: midnight
+  #   interval: 1
+  #   maxBytes: 104857600  # !!python/object/apply:eval [ 100 * 1024 * 1024 ]
+  #   backupCount: 30
+  #   delay: False
+  #   filename: logs/error.log
+  #   encoding: utf-8
+  speed_timed_rotating_run:    # In Windows, multiple processes will lose record.
+    class: utils.log.SafeTimedRotatingFileHandler
+    level: DEBUG
+    formatter: standard
+    when: midnight
+    interval: 1
+    backupCount: 30
+    delay: False
+    filename: logs/run.log
+    encoding: utf-8
+  speed_timed_rotating_warning:  # In Windows, multiple processes will lose record.
+    class: utils.log.SafeTimedRotatingFileHandler
+    level: WARNING
+    filters: [only_warning]
+    formatter: standard
+    when: midnight
+    interval: 1
+    backupCount: 30
+    delay: False
+    filename: logs/warning.log
+    encoding: utf-8
+  speed_timed_rotating_error:  # In Windows, multiple processes will lose record.
+    class: utils.log.SafeTimedRotatingFileHandler
+    level: ERROR
+    formatter: standard
+    when: midnight
+    interval: 1
+    backupCount: 30
+    delay: False
+    filename: logs/error.log
+    encoding: utf-8
+# root:
+#   level: DEBUG
+#   handlers: [ speed_timed_rotating_run ]  # concurrent_timed_rotating_run, watched_run or speed_timed_rotating_run
+root:
+  level: DEBUG
+  handlers: [ console, watched_error, watched_run]  # concurrent_timed_rotating_run, watched_run or speed_timed_rotating_run
+
+loggers:
+  console:
+    level: DEBUG
+    handlers: [console]
+    propagate: no
+  matplotlib:
+    level: DEBUG
+    handlers: [ none ]
+    propagate: no
+  # api:
+  #   level: DEBUG
+  #   handlers: [ speed_timed_rotating_run, speed_timed_rotating_warning, speed_timed_rotating_error ]
+  #   propagate: no
+  api:
+    level: DEBUG
+    handlers: [ console ]
+    propagate: no
