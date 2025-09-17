@@ -18,7 +18,8 @@ class TestWeatherBot(unittest.TestCase):
             "current": {
                 "temp_c": 25.0,
                 "condition": {"text": "Sunny"},
-                "humidity": 50
+                "humidity": 50,
+                "wind_kph": 10.0 # 模拟API响应中的风速
             }
         }
         mock_response.raise_for_status = Mock()
@@ -29,6 +30,9 @@ class TestWeatherBot(unittest.TestCase):
         self.assertTrue(result['success'])
         self.assertEqual(result['location'], "Beijing, China")
         self.assertEqual(result['temperature'], 25.0)
+        self.assertEqual(result['condition'], "Sunny") # 确保条件也被测试
+        self.assertEqual(result['humidity'], 50) # 确保湿度也被测试
+        self.assertEqual(result['wind_speed'], 10.0) # 添加对风速的断言
 
 
     @patch('main.requests.get')
@@ -45,6 +49,7 @@ class TestWeatherBot(unittest.TestCase):
         self.assertEqual(result['temperature'], 23.0) 
         self.assertEqual(result['condition'], "多云")
         self.assertEqual(result['humidity'], 75)
+        self.assertEqual(result['wind_speed'], 15.0) # 添加对备选风速的断言
         
         # 验证print函数被调用了，但实际不会打印到控制台
         mock_print.assert_called_once()
