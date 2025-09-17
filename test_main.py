@@ -29,7 +29,8 @@ class TestWeatherBot(unittest.TestCase):
         self.assertTrue(result['success'])
         self.assertEqual(result['location'], "Beijing, China")
         self.assertEqual(result['temperature'], 25.0)
-    
+
+
     @patch('main.requests.get')
     @patch('builtins.print') # 增加对内置print函数的mock
     def test_get_weather_failure(self, mock_print, mock_get): # mock_print作为第一个参数
