@@ -1,0 +1,26 @@
+# YOLOv8 训练配置文件（仅包含官方支持的基础参数）
+# 所有参数均可在 https://docs.ultralytics.com/usage/cfg/ 查到，无无效参数
+model: yolo26n.pt          # 预训练模型
+data: datasets/data.yaml   # 数据集配置文件路径
+epochs: 100               # 训练轮数（适配少样本学习）
+batch: 4                   # 批次大小
+imgsz: [640, 480]                # 输入图片尺寸
+device: 0                  # 训练设备（0=GPU，cpu=CPU）
+workers: 4                 # 数据加载线程数
+lr0: 0.001                 # 初始学习率
+lrf: 0.01                  # 学习率衰减因子
+weight_decay: 0.0005       # 权重衰减（抑制过拟合）
+warmup_epochs: 5.0         # 热身轮数
+cos_lr: true               # 余弦学习率（利于少样本收敛）
+close_mosaic: 10           # 后期关闭马赛克增强
+amp: true                 # 关闭混合精度训练（按你的需求）
+val: true                  # 训练中验证
+save: true                 # 保存模型
+exist_ok: false             # 覆盖已有训练结果
+name: train_base          # 训练结果目录名
+save_txt: false            # 保存预测结果（分析少样本类别）
+save_crop: false            # 保存裁剪的目标（分析错分样本）
+save_json: true            # 保存JSON结果（详细评估）
+iou: 0.45                  # 调低IOU阈值（对少样本类别友好）
+agnostic_nms: true         # 类别无关NMS（避免多数类压制少数类）
+augment: false              # 开启全局数据增强（提升少样本特征多样性）

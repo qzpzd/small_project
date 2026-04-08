@@ -1,0 +1,18 @@
+type: yolov8
+name: yolov8n_initdata
+display_name: yolov8n
+model_path: D:/ai_projects\yolov8_alldetect\models\best.onnx
+stride: 64
+input_width: 640
+input_height: 480
+nms_threshold: 0.3
+confidence_threshold: 0.1
+classes:
+  - base
+  # - edgescrew
+  # - pad
+  # - scw
+  # - clip
+  # - pulltab
+  # - unscw
+  # - unpulltab
