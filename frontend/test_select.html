@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Select Component</title>
+</head>
+<body>
+    <h1>Select组件测试</h1>
+    <p>打开浏览器开发者工具控制台查看日志</p>
+    <p>访问 <a href="http://localhost:5173/annotation">http://localhost:5173/annotation</a> 测试数据集选择功能</p>
+    
+    <h2>测试步骤：</h2>
+    <ol>
+        <li>打开上述链接</li>
+        <li>找到页面左上角的数据集名称（应该是一个下拉选择框）</li>
+        <li>点击数据集名称</li>
+        <li>选择一个不同的数据集</li>
+        <li>查看控制台输出</li>
+    </ol>
+    
+    <h2>预期结果：</h2>
+    <ul>
+        <li>控制台应该显示"=== 数据集选择 ==="</li>
+        <li>控制台应该显示选择的数据集ID</li>
+        <li>控制台应该显示当前数据集列表</li>
+        <li>控制台应该显示switchDataset函数类型</li>
+        <li>页面应该切换到选中的数据集</li>
+    </ul>
+    
+    <h2>后端数据集列表：</h2>
+    <pre id="dataset-list">加载中...</pre>
+    
+    <script>
+        // 测试后端API
+        fetch('http://localhost:8000/api/dataset/list')
+            .then(response => response.json())
+            .then(data => {
+                const listEl = document.getElementById('dataset-list');
+                if (data.success) {
+                    listEl.textContent = JSON.stringify(data.data, null, 2);
+                    console.log('后端数据集列表:', data.data);
+                } else {
+                    listEl.textContent = '加载失败: ' + JSON.stringify(data);
+                }
+            })
+            .catch(error => {
+                const listEl = document.getElementById('dataset-list');
+                listEl.textContent = '加载失败: ' + error.message;
+                console.error('加载后端数据集列表失败:', error);
+            });
+    </script>
+</body>
+</html>

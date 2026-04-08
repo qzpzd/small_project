@@ -1,0 +1,56 @@
+# Dependency directories
+node_modules/
+venv/
+
+# Log files
+*.log
+
+# Model files
+*.pt
+*.pth
+
+# Image files
+**/images/
+**/labels/
+**/annotations/
+
+# Database files
+*.db
+
+# Output directories
+outputs/
+runs/
+reports/
+
+# Upload directories
+uploads/
+
+# PID files
+*.pid
+
+# Pycache directories
+__pycache__/
+
+# Config directories
+config/
+
+# Datasets directory (except for config files)
+datasets/
+!datasets/**/data.yaml
+!datasets/**/description.txt
+
+# Environment files
+.env
+
+# OS generated files
+.DS_Store
+Thumbs.db
+
+# IDE files
+.vscode/
+.idea/
+
+# Other
+opencv-*/
+ros2_ws/
+sop/
