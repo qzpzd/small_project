@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>rustinfer · Ultralytics 对比</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Sora:wght@500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/static/styles.css" />
+</head>
+<body>
+  <div class="bg"></div>
+  <main class="shell">
+    <header class="brand">
+      <p class="logo">rustinfer</p>
+      <h1>Ultralytics ↔ Rust 推理对比</h1>
+      <p class="lede">同一张图：Python Ultralytics 与 ultralytics-inference（Rust）的预处理 / 纯推理 / 后处理耗时对照。</p>
+    </header>
+
+    <section class="panel" aria-label="控制台">
+      <form id="form" class="controls">
+        <label class="file">
+          <span>选择图片</span>
+          <input id="file" type="file" accept="image/*" required />
+        </label>
+        <div class="grid">
+          <label>Ultralytics 模型
+            <input name="ul_model" id="ul_model" value="yolo26n.pt" />
+          </label>
+          <label>Rust 模型 (ONNX)
+            <input name="rust_model" id="rust_model" value="" />
+          </label>
+          <label>Ultralytics device
+            <input name="ul_device" id="ul_device" value="0" placeholder="0 / cpu / cuda:0" />
+          </label>
+          <label>Rust device
+            <input name="rust_device" id="rust_device" value="tensorrt:0" />
+          </label>
+          <label>conf
+            <input name="conf" id="conf" type="number" step="0.05" min="0" max="1" value="0.25" />
+          </label>
+          <label>imgsz
+            <input name="imgsz" id="imgsz" type="number" step="32" min="320" max="1280" value="640" />
+          </label>
+          <label>warmup
+            <input name="warmup" id="warmup" type="number" min="0" max="5" value="1" />
+          </label>
+          <label>引擎
+            <select name="engines" id="engines">
+              <option value="both">两者对比</option>
+              <option value="ultralytics">仅 Ultralytics</option>
+              <option value="rust">仅 Rust</option>
+            </select>
+          </label>
+        </div>
+        <div class="actions">
+          <button type="submit" id="run">开始对比</button>
+          <p id="status" class="status" role="status"></p>
+        </div>
+      </form>
+    </section>
+
+    <section id="results" class="results hidden" aria-live="polite">
+      <div class="compare-cards">
+        <article class="engine ul">
+          <header>
+            <h2>Ultralytics · Python</h2>
+            <p id="ul-meta" class="meta"></p>
+          </header>
+          <div class="bars" id="ul-bars"></div>
+          <figure>
+            <img id="ul-img" alt="Ultralytics 标注结果" />
+          </figure>
+        </article>
+        <article class="engine rust">
+          <header>
+            <h2>ultralytics-inference · Rust</h2>
+            <p id="rust-meta" class="meta"></p>
+          </header>
+          <div class="bars" id="rust-bars"></div>
+          <figure>
+            <img id="rust-img" alt="Rust 标注结果" />
+          </figure>
+        </article>
+      </div>
+
+      <section class="analysis" id="analysis">
+        <h2>对比分析</h2>
+        <div class="table-wrap">
+          <table id="cmp-table">
+            <thead>
+              <tr>
+                <th>阶段</th>
+                <th>Ultralytics (ms)</th>
+                <th>Rust (ms)</th>
+                <th>加速比 (Py / Rust)</th>
+              </tr>
+            </thead>
+            <tbody></tbody>
+          </table>
+        </div>
+        <p id="verdict" class="verdict"></p>
+        <ul class="notes">
+          <li>加速比 &gt; 1 表示 Rust 更快；纯 inference 最能反映引擎差异，e2e 含前后处理。</li>
+          <li>Python 侧默认权重为 <code>.pt</code>（PyTorch/CUDA）；Rust 侧为 ONNX + TensorRT/CUDA，模型数值路径不同，对比的是端到端工程耗时而非绝对精度。</li>
+          <li>首次 TensorRT 会编译引擎，请开启 warmup 或先 CLI 跑通再对比。</li>
+        </ul>
+      </section>
+    </section>
+  </main>
+  <script src="/static/app.js"></script>
+</body>
+</html>
